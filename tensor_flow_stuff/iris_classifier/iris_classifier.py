@@ -8,10 +8,10 @@ _OUT_NEURONS = 3
 
 
 def scale_data(arr):
-    arr[:, 0] = (arr[:, 0] - 4.3) / 3.6
-    arr[:, 1] = (arr[:, 1] - 2.0) / 2.4
-    arr[:, 2] = (arr[:, 2] - 1.0) / 5.9
-    arr[:, 3] = (arr[:, 3] - 0.1) / 2.4
+    # normalize data to fall between 0 and 1
+    data_min = np.amin(arr, axis=0)
+    data_max = np.amax(arr, axis=0)
+    arr = (arr - data_min) / (data_max - data_min)
 
 
 # fastest way to shuffle 150 samples - 0.04758 ms per loop
